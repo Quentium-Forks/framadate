@@ -5,8 +5,8 @@
         <div class="col-xs-12 col-md-6 text-center">
             <p class="home-choice">
                 <a href="{$SERVER_URL}create_poll.php?type=date" class="opacity" role="button">
-                    <img class="img-responsive center-block" src="{'images/date.png'|resource}" alt=""/>
-                    <br/>
+                    <img class="img-responsive center-block" src="{'images/date.png'|resource}" alt="" />
+                    <br />
                     <span class="btn btn-primary btn-lg">
                         <span class="glyphicon glyphicon-calendar"></span>
                         {__('Homepage', 'Schedule an event')}
@@ -17,8 +17,8 @@
         <div class="col-xs-12 col-md-6 text-center">
             <p class="home-choice">
                 <a href="{$SERVER_URL}create_poll.php?type=autre" class="opacity" role="button">
-                    <img alt="" class="img-responsive center-block" src="{'images/classic.png'|resource}"/>
-                    <br/>
+                    <img alt="" class="img-responsive center-block" src="{'images/classic.png'|resource}" />
+                    <br />
                     <span class="btn btn-info btn-lg">
                         <span class="glyphicon glyphicon-stats"></span>
                         {__('Homepage', 'Make a classic poll')}
@@ -26,18 +26,54 @@
                 </a>
             </p>
         </div>
+    </div>
+
+    <hr role="presentation" />
+
+    <div class="panel">
         <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
             <p class="home-choice">
-                <a href="{$SERVER_URL}find_polls.php" class="opacity" role="button">
-                    <span class="btn btn-warning btn-lg">
-                        <span class="glyphicon glyphicon-search"></span>
-                        {__('Homepage', 'Where are my polls')}
-                    </span>
-                </a>
+                <span class="label label-success" style="font-size: 150%; font-weight: normal; padding: 10px 16px;">
+                    <span class="glyphicon glyphicon-list"></span>
+                    Liste des sondages
+                </span>
             </p>
         </div>
+
+        <table class="table table-bordered table-polls">
+            <tr align="center">
+                <th scope="col"></th>
+                <th scope="col">{__('Admin', 'Title')}</th>
+                <th scope="col">{__('Admin', 'Author')}</th>
+                <th scope="col">{__('Admin', 'Email')}</th>
+                <th scope="col">{__('Admin', 'Votes')}</th>
+                <th scope="col">{__('Admin', 'Poll ID')}</th>
+            </tr>
+            {foreach $polls as $poll}
+                <tr align="center">
+                    <td class="cell-format">
+                        <a href="{poll_url id=$poll->id}">
+                            {if $poll->format === 'D'}
+                                <span class="glyphicon glyphicon-calendar" aria-hidden="true"
+                                      title="{__('Generic', 'Date')}"></span>
+                                <span class="sr-only">{__('Generic', 'Date')}</span>
+                            {else}
+                                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"
+                                      title="{__('Generic', 'Classic')}"></span>
+                                <span class="sr-only">{__('Generic', 'Classic')}</span>
+                            {/if}
+                        </a>
+                    </td>
+                    <td>{$poll->title|html}</td>
+                    <td>{$poll->admin_name|html}</td>
+                    <td>{$poll->admin_mail|html}</td>
+                    <td>{$poll->votes|html}</td>
+                    <td><a href="{poll_url id=$poll->id}">{$poll->id|html}</a></td>
+                </tr>
+            {/foreach}
+        </table>
     </div>
-    <hr role="presentation"/>
+
     <div class="row">
 
         {if $show_what_is_that}
@@ -59,10 +95,10 @@
                 </ol>
 
                 {if $demo_poll != null}
-                <p>
-                    {__('1st section', 'Do you want to')}
-                    <a href="{poll_url id='aqg259dth55iuhwm'}">{__('1st section', 'view an example?')}</a>
-                </p>
+                    <p>
+                        {__('1st section', 'Do you want to')}
+                        <a href="{poll_url id='aqg259dth55iuhwm'}">{__('1st section', 'view an example?')}</a>
+                    </p>
                 {/if}
             </div>
         {/if}
@@ -105,7 +141,7 @@
                     {__('3rd section', 'To participate in the software development, suggest improvements or simply download it, please visit ')}
                     <a href="https://framagit.org/framasoft/framadate">{__('3rd section', 'the development site')}</a>.
                 </p>
-                <br/>
+                <br />
 
                 <p>{__('3rd section', 'If you want to install the software for your own use and thus increase your independence, we help you on:')}</p>
 

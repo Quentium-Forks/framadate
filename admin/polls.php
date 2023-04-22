@@ -33,6 +33,7 @@ const POLLS_PER_PAGE = 30;
 function buildSearchQuery($search) {
     $query = '';
     foreach ($search as $key => $value) {
+        if ($value === null) continue;
         $query .= $key . '=' . urlencode($value) . '&';
     }
     return substr($query, 0, -1);
@@ -62,9 +63,9 @@ $page = ($page >= 1) ? $page : 1;
 
 // Search
 $search['poll'] = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-$search['title'] = filter_input(INPUT_GET, 'title', FILTER_SANITIZE_STRING);
-$search['name'] = filter_input(INPUT_GET, 'name', FILTER_SANITIZE_STRING);
-$search['mail'] = filter_input(INPUT_GET, 'mail', FILTER_SANITIZE_STRING);
+$search['title'] = filter_input(INPUT_GET, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$search['name'] = filter_input(INPUT_GET, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$search['mail'] = filter_input(INPUT_GET, 'mail', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 /* PAGE */
 /* ---- */

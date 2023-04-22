@@ -70,7 +70,7 @@ class InputService {
 
     public function filterName($name): ?string
     {
-        $filtered = trim($name);
+        $filtered = $name ? trim($name) : '';
         return $this->returnIfNotBlank($filtered);
     }
 
