@@ -82,7 +82,7 @@ if ($poll->format === 'D') {
     $moments_line = ',';
     foreach ($slots as $slot) {
         $title = Utils::csvEscape(formatDate($date_format['txt_date'], $slot->title));
-        $moments = explode(',', $slot->moments);
+        $moments = explode(',', $slot->moments ?? '');
 
         $titles_line .= str_repeat($title . ',', count($moments));
         $moments_line .= implode(',', array_map('\Framadate\Utils::csvEscape', $moments)) . ',';

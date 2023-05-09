@@ -205,7 +205,7 @@ class PollService {
         foreach ($slots as $slot) {
             $obj = new stdClass();
             $obj->day = $slot->title;
-            $obj->moments = explode(',', $slot->moments);
+            $obj->moments = explode(',', $slot->moments ?? '');
 
             $splitted[] = $obj;
         }
