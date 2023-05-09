@@ -42,7 +42,7 @@ body {
 }
 
 /* Commentaires */
-div.comment{
+.comment{
     margin-bottom: 10px;
     border-left: 1px dashed #999;
     background: #F5F5F5;
@@ -234,14 +234,16 @@ caption {
 .jumbotron p.well {
     font-size:16px;
 }
+
 .jumbotron p {
-    font-weight: normal;
+    font-weight:normal;
 }
 
 /* Tableau du sondage */
 #tableContainer {
     overflow-x:auto;
     margin:5px auto;
+    contain:layout;
 }
 
 table.results {
