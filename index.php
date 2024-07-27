@@ -59,6 +59,8 @@ $polls = $found['polls'];
 $count = $found['count'];
 $total = $found['total'];
 
+$smarty->registerPlugin('modifier', '__', '__');
+
 $smarty->assign('polls', $polls);
 $smarty->assign('count', $count);
 $smarty->assign('total', $total);
