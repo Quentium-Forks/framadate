@@ -71,4 +71,6 @@ require_once __DIR__ . '/i18n.php';
 // Smarty
 require_once __DIR__ . '/smarty.php';
 
-$smarty->registerPlugin('modifier', '__', '__');
+if (!function_exists('__')) {   
+    $smarty->registerPlugin('modifier', '__', '__');
+}
